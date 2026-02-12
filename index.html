@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dheeru Bhai Juice Corner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Sora:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --muted: #616161;
+      --primary: #ef5a29;
+      --primary-dark: #cb4218;
+      --accent: #ffd26e;
+      --ring: rgba(239, 90, 41, 0.25);
+      --shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, #ffe3b7 0, transparent 36%),
+        radial-gradient(circle at 90% 10%, #ffd3cc 0, transparent 28%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    .shell {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 2.2rem 0 2.6rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d1d1d, #2e2e2e);
+      color: #fff;
+      border-radius: 24px;
+      padding: 2rem clamp(1rem, 3vw, 2.2rem);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      animation: rise 700ms ease-out both;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      top: -95px;
+      right: -70px;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Outfit", sans-serif;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 3.6vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      max-width: 18ch;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #f0f0f0;
+      max-width: 56ch;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      margin-top: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(90deg, var(--primary), #ff844d);
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      box-shadow: 0 8px 20px rgba(239, 90, 41, 0.32);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(239, 90, 41, 0.42);
+    }
+
+    .order-msg {
+      margin-top: 0.7rem;
+      font-size: 0.95rem;
+      color: #ffe9dd;
+    }
+
+    .order-msg a {
+      color: #ffd26e;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .order-msg a:hover {
+      text-decoration: underline;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .meta {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f3e4d5;
+      animation: rise 700ms ease-out both;
+      animation-delay: 120ms;
+    }
+
+    .meta strong {
+      display: block;
+      font-family: "Outfit", sans-serif;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+    }
+
+    .meta p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+
+    .catalog {
+      margin-top: 1.5rem;
+    }
+
+    .catalog h2 {
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .products {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid #f3e4d5;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.07);
+      transition: transform 240ms ease, box-shadow 240ms ease;
+      animation: rise 700ms ease-out both;
+    }
+
+    .product-card:nth-child(2) {
+      animation-delay: 120ms;
+    }
+
+    .product-card:nth-child(3) {
+      animation-delay: 220ms;
+    }
+
+    .product-card:nth-child(4) {
+      animation-delay: 300ms;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 158px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 0.95rem 1rem 1.1rem;
+    }
+
+    .product-type {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--primary);
+      border-radius: 999px;
+      padding: 0.24rem 0.56rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .product-name {
+      font-family: "Outfit", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+      min-height: 2.5em;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 1.45rem;
+      color: #6f6f6f;
+      font-size: 0.9rem;
+    }
+
+    .hero-cta:focus-visible {
+      outline: 3px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: 94vw;
+        padding-top: 1rem;
+      }
+
+      .hero {
+        border-radius: 20px;
+        padding: 1.4rem 1rem;
+      }
+
+      .product-img {
+        height: 170px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <h1>Dheeru Bhai Juice Corner</h1>
+      <p>(Aggarsen Chowk, Jagadhri, Yamunaguar, Haryana)</p>
+      <p><strong>Fresh &amp; Healthy</strong><br />Fruits | Fruit Chaat | Fruit Juice</p>
+      <a class="hero-cta" href="https://wa.me/917988237504" target="_blank" rel="noopener">
+        Order on WhatsApp: 7988237504
+      </a>
+      <p class="order-msg">
+        For orders, send a message on WhatsApp:
+        <a href="https://wa.me/917988237504?text=Hi%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">Message Now</a>
+      </p>
+    </header>
+
+    <section class="meta-row">
+      <article class="meta">
+        <strong>Call / WhatsApp</strong>
+        <p>7988237504</p>
+      </article>
+      <article class="meta">
+        <strong>Location</strong>
+        <p>Aggarsen Chowk, Jagadhri, Yamunaguar, Haryana</p>
+      </article>
+      <article class="meta">
+        <strong>Tagline</strong>
+        <p>Enjoy the taste of freshness in every sip!</p>
+      </article>
+    </section>
+
+    <section class="catalog">
+      <h2>Fruits, Juices &amp; Shakes</h2>
+      <div class="products">
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" alt="Fresh Orange Juice" />
+          <div class="product-info">
+            <span class="product-type">Juice</span>
+            <h3 class="product-name">Fresh Orange Juice</h3>
+            <p class="product-desc">Freshly squeezed oranges with no added sugar.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=600&q=80" alt="Mixed Fruit Juice" />
+          <div class="product-info">
+            <span class="product-type">Juice</span>
+            <h3 class="product-name">Mixed Fruit Juice</h3>
+            <p class="product-desc">Seasonal fruit blend for balanced sweetness and freshness.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1605027990121-cbae9e0642df?auto=format&fit=crop&w=600&q=80" alt="Fresh Mangoes" />
+          <div class="product-info">
+            <span class="product-type">Fruit</span>
+            <h3 class="product-name">Fresh Mangoes</h3>
+            <p class="product-desc">Juicy, naturally ripened Alphonso-style mangoes.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=80" alt="Red Apples" />
+          <div class="product-info">
+            <span class="product-type">Fruit</span>
+            <h3 class="product-name">Red Apples</h3>
+            <p class="product-desc">Crisp, sweet apples selected fresh every morning.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=600&q=80" alt="Banana Shake" />
+          <div class="product-info">
+            <span class="product-type">Shake</span>
+            <h3 class="product-name">Banana Shake</h3>
+            <p class="product-desc">Creamy banana blend, chilled and freshly prepared.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80" alt="Mango Shake" />
+          <div class="product-info">
+            <span class="product-type">Shake</span>
+            <h3 class="product-name">Mango Shake</h3>
+            <p class="product-desc">Rich mango shake made with seasonal ripe mangoes.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=600&q=80" alt="Pineapple Juice" />
+          <div class="product-info">
+            <span class="product-type">Juice</span>
+            <h3 class="product-name">Pineapple Juice</h3>
+            <p class="product-desc">Sweet and tangy pineapple juice served chilled.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=600&q=80" alt="Papaya Bowl" />
+          <div class="product-info">
+            <span class="product-type">Fruit</span>
+            <h3 class="product-name">Papaya Bowl</h3>
+            <p class="product-desc">Fresh papaya cubes, clean-cut and ready to eat.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=80" alt="Fruit Chaat" />
+          <div class="product-info">
+            <span class="product-type">Fruit</span>
+            <h3 class="product-name">Fruit Chaat</h3>
+            <p class="product-desc">Mixed fruit chaat with a light masala twist.</p>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Chikoo Shake" />
+          <div class="product-info">
+            <span class="product-type">Shake</span>
+            <h3 class="product-name">Chikoo Shake</h3>
+            <p class="product-desc">Classic chikoo milkshake with a smooth texture.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 Dheeru Bhai Juice Corner. All rights reserved.
+    </footer>
+  </main>
+</body>
+</html>
